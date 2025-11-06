@@ -58,9 +58,8 @@ def create_app():
     return app
 
 
-# ✅ This part ensures Render (Gunicorn) can find `app`
-app = create_app()
 
 if __name__ == "__main__":
-    # Local run
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app = create_app()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

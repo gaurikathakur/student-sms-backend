@@ -8,7 +8,12 @@ def create_app():
     app = Flask(__name__)
 
     # ✅ Enable CORS globally (no duplicate headers)
-    CORS(app, origins=["http://localhost:5173", "http://localhost:5174", "http://localhost:5175"], supports_credentials=True)
+    CORS(app, origins=[
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:5175",
+    "https://student-sms-frontend-gaurri.onrender.com"
+], supports_credentials=True)
 
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite')}"

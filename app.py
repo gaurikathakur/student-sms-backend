@@ -26,9 +26,6 @@ def create_app():
     from routes.student import student_bp
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
     app.register_blueprint(student_bp, url_prefix="/api/student")
-    from routes.api_public import api_public
-    app.register_blueprint(api_public)
-
 
     # ✅ AI Chat Route (working CORS & JSON)
     @app.route("/api/ai/respond", methods=["POST"])

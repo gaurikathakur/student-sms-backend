@@ -89,3 +89,31 @@ def dashboard(student_id):
     }
 
     return jsonify(response)
+@student_bp.route("/all", methods=["GET"])
+def get_all_students():
+    students = Student.query.all()
+
+    result = []
+
+    for s in students:
+        result.append({
+            "id": s.id,
+            "name": s.name,
+            "username": s.username,
+            "mobile": s.mobile,
+            "role": s.role,
+            "semester": s.semester,
+            "department": s.department,
+            "current_address": s.current_address,
+            "hometown": s.hometown,
+            "cgpa": s.cgpa,
+            "certifications": s.certifications,
+            "extracurricular": s.extracurricular,
+            "languages_known": s.languages_known,
+            "attendance": s.attendance,
+            "marks": s.marks,
+            "timetable": s.timetable,
+        })
+
+    return jsonify(result), 200
+

@@ -117,3 +117,39 @@ def get_all_students():
 
     return jsonify(result), 200
 
+
+@student_bp.route("/all", methods=["GET"])
+def get_all_students():
+    students = Student.query.all()
+    result = []
+
+    for s in students:
+        stud = s.to_dict()  # use your existing parser
+
+        result.append({
+            "id": stud["id"],
+            "name": stud["name"],
+            "username": stud["username"],
+            "mobile": stud["mobile"],
+            "role": stud["role"],
+            "semester": stud["semester"],
+            "department": stud["department"],
+            "current_address": stud["current_address"],
+            "hometown": stud["hometown"],
+            "cgpa": stud["cgpa"],
+
+            # JSON lists
+            "certifications": stud["certifications"],
+            "extracurricular": stud["extracurricular"],
+            "languages_known": stud["languages_known"],
+            "library_books": stud["library_books"],
+            "timetable": stud["timetable"],
+
+            # Attendance fields
+            "attendance_weekly": stud["attendance_weekly"],
+            "attendance_semester": stud["attendance_semester"],
+        })
+
+    return jsonify(result), 200
+
+
